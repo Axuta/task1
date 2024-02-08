@@ -4,11 +4,14 @@ public class CardGame {
 
     static int maxValue = 10;
     static int numOfIdenticalCards = 4;
+
     static int drawCard(List<Integer> drawPile, List<Integer> discardPile) {
         if (drawPile.isEmpty()) {
             ShuffleAlgorithm.shuffle(discardPile, discardPile.size());
             drawPile.addAll(discardPile);
             discardPile.clear();
+
+            if (drawPile.isEmpty()) return -1;
         }
         return drawPile.removeFirst();
     }
@@ -28,12 +31,14 @@ public class CardGame {
         List<Integer> player1DiscardPile = new ArrayList<>();
         List<Integer> player2DiscardPile = new ArrayList<>();
 
-        while (!player1DrawPile.isEmpty() && !player2DrawPile.isEmpty()) {
+        do {
             int player1Card = drawCard(player1DrawPile, player1DiscardPile);
             int player2Card = drawCard(player2DrawPile, player2DiscardPile);
 
-            System.out.println("Player 1 (" + player1DrawPile.size() + " cards): "+ player1Card);
-            System.out.println("Player 2 (" + player2DrawPile.size() + " cards): "+ player2Card);
+            if (player1Card == -1 || player2Card == -1) break;
+
+            System.out.println("Player 1 (" + player1DrawPile.size() + " cards): " + player1Card);
+            System.out.println("Player 2 (" + player2DrawPile.size() + " cards): " + player2Card);
 
             if (player1Card > player2Card) {
                 if (!tieRound.isEmpty()) {
@@ -57,7 +62,7 @@ public class CardGame {
                 tieRound.add(player2Card);
             }
             System.out.println();
-        }
+        } while (!player1DiscardPile.isEmpty() || !player2DiscardPile.isEmpty());
 
         if (player1DrawPile.isEmpty() && player1DiscardPile.isEmpty()) {
             System.out.println("Player 2 wins the game!");
