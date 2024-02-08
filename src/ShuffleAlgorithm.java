@@ -8,7 +8,7 @@ public class ShuffleAlgorithm {
             int j = random.nextInt(i + 1);
             int temp = arr.get(i);
             arr.set(i, arr.get(j));
-            arr.set(j, arr.get(temp));
+            arr.set(j, temp);
         }
 
         return arr;
