@@ -19,6 +19,8 @@ public class CardGame {
     public static void main(String[] args) {
         int numberOfCards = maxValue * numOfIdenticalCards;
         int numberOfCardsEach = numberOfCards / 2;
+        int player1PileSize;
+        int player2PileSize;
 
         List<Integer> defaultDeck = ShuffleAlgorithm.generateDeck(maxValue, numOfIdenticalCards);
         List<Integer> deck = ShuffleAlgorithm.shuffle(defaultDeck, defaultDeck.size());
@@ -35,16 +37,22 @@ public class CardGame {
             int player1Card = drawCard(player1DrawPile, player1DiscardPile);
             int player2Card = drawCard(player2DrawPile, player2DiscardPile);
 
-            if (player1Card == -1 || player2Card == -1) break;
+            player1PileSize = player1DrawPile.size() + player1DiscardPile.size();
+            player2PileSize = player2DrawPile.size() + player2DiscardPile.size();
 
-            System.out.println("Player 1 (" + player1DrawPile.size() + " cards): " + player1Card);
-            System.out.println("Player 2 (" + player2DrawPile.size() + " cards): " + player2Card);
+            if (player1Card == -1 || player2Card == -1) {
+                break;
+            }
+
+            System.out.println("Player 1 (" + player1PileSize + " cards): " + player1Card);
+            System.out.println("Player 2 (" + player2PileSize + " cards): " + player2Card);
 
             if (player1Card > player2Card) {
                 if (!tieRound.isEmpty()) {
                     player1DiscardPile.addAll(tieRound);
                     tieRound.clear();
                 }
+
                 player1DiscardPile.add(player1Card);
                 player1DiscardPile.add(player2Card);
                 System.out.println("Player 1 wins the round");
@@ -53,16 +61,17 @@ public class CardGame {
                     player2DiscardPile.addAll(tieRound);
                     tieRound.clear();
                 }
+
                 player2DiscardPile.add(player1Card);
                 player2DiscardPile.add(player2Card);
                 System.out.println("Player 2 wins the round");
             } else {
-                System.out.println("No winner in this round");
                 tieRound.add(player1Card);
                 tieRound.add(player2Card);
+                System.out.println("No winner in this round");
             }
             System.out.println();
-        } while (!player1DiscardPile.isEmpty() || !player2DiscardPile.isEmpty());
+        } while (player1PileSize != 0 || player2PileSize != 0);
 
         if (player1DrawPile.isEmpty() && player1DiscardPile.isEmpty()) {
             System.out.println("Player 2 wins the game!");
