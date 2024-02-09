@@ -1,37 +1,56 @@
 import org.junit.jupiter.api.Test;
 import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class CardGameTests {
+    List<Integer> originalDeck = ShuffleAlgorithm.generateDeck(CardGame.maxValue, CardGame.numOfIdenticalCards);
+
     @Test
     void testNewDeckContains40Cards() {
-        List<Integer> originalDeck = ShuffleAlgorithm.generateDeck(CardGame.maxValue, CardGame.numOfIdenticalCards);
-
         assertEquals(40, originalDeck.size());
     }
 
     @Test
     void testShuffleFunction() {
-        List<Integer> originalDeck = ShuffleAlgorithm.generateDeck(CardGame.maxValue, CardGame.numOfIdenticalCards);
-        List<Integer> deck = ShuffleAlgorithm.shuffle(originalDeck, originalDeck.size());
+        List<Integer> copiedDeck = List.copyOf(originalDeck);
+        List<Integer> deck = ShuffleAlgorithm.shuffle(originalDeck,originalDeck.size());
 
-        assertNotEquals(originalDeck, deck);
+        assertNotEquals(copiedDeck, deck);
+
     }
 
     @Test
     void testDrawPileRefill() {
         List<Integer> drawPile = new ArrayList<>();
-        List<Integer> discardPile = ShuffleAlgorithm.generateDeck(CardGame.maxValue, CardGame.numOfIdenticalCards);
+        List<Integer> discardPile = originalDeck;
 
         CardGame.drawCard(drawPile, discardPile);
+
         assertFalse(drawPile.isEmpty());
     }
 
     @Test
     void testCardComparison() {
-        int player1Card = 8;
-        int player2Card = 4;
-        assertTrue(player1Card > player2Card);
+
+        List<Integer> player1DrawPile = new ArrayList<>(Arrays.asList( 7, 4, 2));
+        List<Integer> player2DrawPile = new ArrayList<>(Arrays.asList( 3, 6, 5));
+        List<Integer> player1DiscardPile = new ArrayList<>();
+        List<Integer> player2DiscardPile = new ArrayList<>();
+
+        int player1Card = CardGame.drawCard(player1DrawPile, player1DiscardPile);
+        int player2Card = CardGame.drawCard(player2DrawPile, player2DiscardPile);
+
+        if (player1Card > player2Card) {
+            player1DiscardPile.add(player1Card);
+            player1DiscardPile.add(player2Card);
+        } else {
+            player2DiscardPile.add(player1Card);
+            player2DiscardPile.add(player2Card);
+        }
+        assertEquals(2, player1DiscardPile.size());
+        assertEquals(0,player2DiscardPile.size());
     }
 
     @Test
