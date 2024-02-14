@@ -7,7 +7,7 @@ Interfaces and Classes
 
 You are building a Card Game for 2 players.
 The rules of the game are listed below and split into tasks. 
-For each task, please implement the indicated unit tests. 
+For each task, please implement the indicated unit deck. 
 The order of tasks is just a suggestion, feel free to implement in whatever order you see fit.
 
 
@@ -44,7 +44,7 @@ If the cards show the same value, the winner of the next turn wins these cards a
 Hint: The game will likely result in a stalemate if this rule is not implemented.
 Hint: Think about how the rules could be adjusted if we decide to change it a bit e.g.:
   • Cards now have suits (Clubs, Spades, Hearts, Diamonds)
-  • Deck size is changed
+  • deck.Deck size is changed
 
 _Tests:_
 1. When comparing two cards, the higher card should win
@@ -57,19 +57,19 @@ Your program should output the cards that are played each turn and who wins.
 At the end the program should output the player that won.
    
 Output example:
-   Player 1 (20 cards): 8
-   Player 2 (20 cards): 1
-   Player 1 wins this round
-   Player 1 (21 cards): 1
-   Player 2 (19 cards): 10
-   Player 2 wins this round
+   player.Player 1 (20 cards): 8
+   player.Player 2 (20 cards): 1
+   player.Player 1 wins this round
+   player.Player 1 (21 cards): 1
+   player.Player 2 (19 cards): 10
+   player.Player 2 wins this round
    [...]
-   Player 1 (38 cards): 4
-   Player 2 (2 cards): 4
+   player.Player 1 (38 cards): 4
+   player.Player 2 (2 cards): 4
    No winner in this round
-   Player 1 (37 cards): 7
-   Player 2 (1 cards): 3 
-   Player 1 wins this round
-   Player 1 wins the game!
+   player.Player 1 (37 cards): 7
+   player.Player 2 (1 cards): 3 
+   player.Player 1 wins this round
+   player.Player 1 wins the game!
 
 
