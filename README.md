@@ -44,7 +44,7 @@ If the cards show the same value, the winner of the next turn wins these cards a
 Hint: The game will likely result in a stalemate if this rule is not implemented.
 Hint: Think about how the rules could be adjusted if we decide to change it a bit e.g.:
   • Cards now have suits (Clubs, Spades, Hearts, Diamonds)
-  • deck.Deck size is changed
+  • Deck size is changed
 
 _Tests:_
 1. When comparing two cards, the higher card should win
@@ -57,19 +57,19 @@ Your program should output the cards that are played each turn and who wins.
 At the end the program should output the player that won.
    
 Output example:
-   player.Player 1 (20 cards): 8
-   player.Player 2 (20 cards): 1
-   player.Player 1 wins this round
-   player.Player 1 (21 cards): 1
-   player.Player 2 (19 cards): 10
-   player.Player 2 wins this round
+   Player 1 (20 cards): 8
+   Player 2 (20 cards): 1
+   Player 1 wins this round
+   Player 1 (21 cards): 1
+   Player 2 (19 cards): 10
+   Player 2 wins this round
    [...]
-   player.Player 1 (38 cards): 4
-   player.Player 2 (2 cards): 4
+   Player 1 (38 cards): 4
+   Player 2 (2 cards): 4
    No winner in this round
-   player.Player 1 (37 cards): 7
-   player.Player 2 (1 cards): 3 
-   player.Player 1 wins this round
-   player.Player 1 wins the game!
+   Player 1 (37 cards): 7
+   Player 2 (1 cards): 3 
+   Player 1 wins this round
+   Player 1 wins the game!
 
 
